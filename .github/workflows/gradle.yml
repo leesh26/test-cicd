@@ -55,7 +55,7 @@ jobs:
       
     - name: Code Deploy
       run: >
-        aws deploy create-deployment --application-name CoffeeWithMe
+        aws deploy create-deployment --application-name coffeewithme
         --deployment-config-name CodeDeployDefault.AllAtOnce
-        --deployment-group-name CWM-seb40
+        --deployment-group-name cwm-seb40
         --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=practice-deploy.zip
