@@ -34,9 +34,10 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
-      with:
-        arguments: build
+      #uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
+      #with:
+      #  arguments: build
+      run : ./gradlew clean build
         
     - name: Make zip file
       run: zip -r ./practice-deploy.zip .
@@ -54,7 +55,7 @@ jobs:
       
     - name: Code Deploy
       run: >
-        aws deploy create-deployment --application-name seb40-main-server
+        aws deploy create-deployment --application-name CoffeeWithMe
         --deployment-config-name CodeDeployDefault.AllAtOnce
-        --deployment-group-name seb40-coffeewithme
+        --deployment-group-name CWM-seb40
         --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=practice-deploy.zip
